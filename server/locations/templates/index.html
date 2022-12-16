@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card</title>
+    <!-- <link href="style.css" rel="stylesheet"> -->
+    <style>
+        body {
+  background-color: #222;
+}
+
+a {
+  text-decoration: none;
+}
+
+.card {
+  width: 500px !important;
+  background: #fff;
+  transition: box-shadow 0.3s ease-in-out;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
+  margin: 30px;
+}
+
+/* Add box shadow to entire card on hover */
+.card:hover {
+  box-shadow: 0 1px 35px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Creates variation of card component in a wide format */
+.card.card--wide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 768px;
+}
+
+.card__media {
+  position: relative;
+  width: 300px;
+}
+
+/* Adds transparent overlay over image. */
+.card__media::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.card__media img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.card__date {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: #e74c3c;
+  color: white;
+  font-weight: bold;
+}
+
+.date--day {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.date--month {
+  font-size: 14px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.card__category {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 0.06em;
+  display: inline-block;
+  color: white;
+  background: #e74c3c;
+  text-align: center;
+  padding: 5px 15px;
+  text-transform: uppercase;
+}
+
+.card__content {
+  padding: 0px 25px;
+  color: #999999;
+  transition: all 0.3s cubic-bezier(0.37, 0.75, 0.61, 1.05) 0s;
+}
+
+/* Changes padding on wide card */
+.card--wide .card__content {
+  /* padding: 20px 20px; */
+  width: calc(100% - 300px);
+}
+
+/* By default we hide the excerpt on card long. */
+.card__excerpt {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+
+/* Removes max-height on wide card */
+.card--wide .card__excerpt {
+  max-height: none;
+}
+
+/* On hover, we expand the excerpt container to show the text. */
+.card:hover .card__excerpt {
+  max-height: 300px;
+}
+
+.card__title {
+  color: initial;
+  margin: 0 0 10px;
+  font-size: 20px;
+}
+
+.card__subtitle {
+  color: #e74c3c;
+  font-weight: 300;
+}
+
+.card__meta {
+  color: #ccc;
+  font-size: 14px;
+}
+
+.closed {
+  background-color: #e74c3c !important;
+}
+
+.open {
+  background-color: #079a01 !important;
+}
+
+.layout {
+  display: flex;
+  /* flex-direction: column; */
+  /* justify-content: space-around; */
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+    </style>
+</head>
+
+<body>
+
+    <div class="layout">
+
+      {% if locations %}
+      {% for location in locations %}
+        <a href="google.com">
+            <article class="card card--wide">
+                <div class="card__media">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/67/Taj_Mahal_in_India_-_Kristian_Bertel.jpg"
+                        alt="Card image" />
+
+                    <!-- Status agar false hoga to closed class lagana warna open lagana -->
+                    <div class="card__date open">
+                        <span class="date--day">Closed</span>
+                        <!-- <span class="date--month">Mar</span> -->
+                    </div>
+                    <!-- <span class="card__category">Photos</span> -->
+                </div>
+
+                <div class="card__content">
+                    <header class="card__header">
+                        <!-- Tit le yha daal dena -->
+                        <h2 class="card__title">Taj Mahal</h2>
+                        <!-- <div class="card__subtitle">The city that never sleeps</div> -->
+                    </header>
+                    <!-- Description daal dena yha -->
+                    <p class="card__excerpt">New York, the largest city in the U.S., is an architectural marvel with
+                        plenty
+                        of
+                        historic monuments, magnificent buildings and countless dazzling skyscrapers.</p>
+
+                    <!-- <footer class="card__meta" role="contentinfo">
+                                    <span class="card__post-date">Currently Open</span>
+                                    <span class="card__comments">39 comments</span>
+                                </footer> -->
+                </div>
+            </article>
+        </a>
+        {% endfor %}
+        {% endif %}
+
+    </div>
+
+</body>
+
+</html>
